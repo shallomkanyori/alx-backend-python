@@ -23,3 +23,6 @@ Define and annotate the following variables with the specified values:
 
 ### Task 5
 Write a type-annotated function `sum_list` which takes a list `input_list` of floats as argument and returns their sum as a float.
+
+### Task 6
+Write a type-annotated function `sum_mixed_list` which takes a list `mxd_lst` of integers and floats and returns their sum as a float.
