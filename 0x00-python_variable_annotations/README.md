@@ -13,3 +13,10 @@ Write a type-annotated function `floor` which takes a float `n` as argument and 
 
 ### Task 3
 Write a type-annotated function `to_str` that takes a float `n` as argument and returns the string representation of the float.
+
+### Task 4
+Define and annotate the following variables with the specified values:
+- `a`, an integer with a value of 1
+- `pi`, a float with a value of 3.14
+- `i_understand_annotations`, a boolean with a value of True
+- `school`, a string with a value of “Holberton”
