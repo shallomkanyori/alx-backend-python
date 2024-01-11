@@ -39,3 +39,16 @@ Annotate the below function’s parameters and return values with the appropriat
 def element_length(lst):
     return [(i, len(i)) for i in lst]
 ```
+
+## Advanced Tasks
+
+### Task 10
+Augment the following code with the correct duck-typed annotations:
+```
+# The types of the elements of the input are not known
+def safe_first_element(lst):
+    if lst:
+        return lst[0]
+    else:
+        return None
+```
