@@ -3,6 +3,7 @@
 
 Classes:
     TestGithubOrgClient
+    TestIntegrationGithubOrgClient
 """
 import unittest
 from unittest import mock
@@ -10,8 +11,9 @@ from unittest.mock import patch, PropertyMock, MagicMock
 
 import client
 from client import GithubOrgClient
-from parameterized import parameterized
-from typing import Dict
+from fixtures import TEST_PAYLOAD
+from parameterized import parameterized, parameterized_class
+from typing import Dict, Union
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -122,3 +124,34 @@ class TestGithubOrgClient(unittest.TestCase):
                          expected: bool):
         """Tests the has_license static method"""
         assert GithubOrgClient.has_license(license, license_key) == expected
+
+
+@parameterized_class(("org_payload", "repos_payload",
+                      "expected_repos", "apache2_repos"), [
+    TEST_PAYLOAD[0]
+])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """Intergration tests for GithubOrgClient"""
+
+    get_patcher = None
+
+    @classmethod
+    def mock_get(cls, url: str) -> Union[MagicMock, None]:
+        """Mock the requests.get method"""
+
+        if url == GithubOrgClient.ORG_URL.format(org='google'):
+            return MagicMock(**{'json.return_value': cls.org_payload})
+        elif url == cls.org_payload['repos_url']:
+            return MagicMock(**{'json.return_value': cls.repos_payload})
+
+    @classmethod
+    def setUpClass(cls):
+        """Set up the patcher"""
+
+        cls.get_patcher = patch('requests.get', side_effect=cls.mock_get)
+        cls.get_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        """Stop the patcher"""
+        cls.get_patcher.stop()
