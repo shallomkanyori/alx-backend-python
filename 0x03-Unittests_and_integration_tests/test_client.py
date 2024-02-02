@@ -57,3 +57,58 @@ class TestGithubOrgClient(unittest.TestCase):
 
             test_client = GithubOrgClient('google')
             assert test_client._public_repos_url == google_payload["repos_url"]
+
+    @patch('client.get_json')
+    def test_public_repos(self, mock_get_json: MagicMock):
+        """Tests the public_repos method"""
+
+        google_prepos_payload = [
+            {
+                "id": 3248507,
+                "name": "ruby-openid-apps-discovery",
+                "license": None
+            },
+            {
+                "id": 3248531,
+                "name": "autoparse",
+                "license": {
+                    "key": "apache-2.0",
+                    "name": "Apache License 2.0",
+                    "spdx_id": "Apache-2.0",
+                }
+            },
+            {
+                "id": 3975462,
+                "name": "anvil-build",
+                "license": {
+                    "key": "other",
+                    "name": "Other",
+                    "spdx_id": "NOASSERTION",
+                }
+            },
+            {
+                "id": 5072378,
+                "name": "googletv-android-samples",
+                "license": None
+            },
+            {
+                "id": 5844236,
+                "name": "embed-dart-vm",
+                "license": None
+            }
+        ]
+        mock_get_json.return_value = google_prepos_payload
+        expected_prepos = [r['name'] for r in google_prepos_payload]
+
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as mock_prepos_url:
+
+            mock_prepos_url.return_value = (
+                    'https://api.github.com/orgs/google/repos')
+
+            test_client = GithubOrgClient('google')
+            prepos = test_client.public_repos()
+            assert prepos == expected_prepos
+
+            mock_prepos_url.assert_called_once()
+            mock_get_json.assert_called_once()
