@@ -134,12 +134,13 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Intergration tests for GithubOrgClient"""
 
     get_patcher = None
+    org = 'google'
 
     @classmethod
     def mock_get(cls, url: str) -> Union[MagicMock, None]:
         """Mock the requests.get method"""
 
-        if url == GithubOrgClient.ORG_URL.format(org='google'):
+        if url == GithubOrgClient.ORG_URL.format(org=cls.org):
             return MagicMock(**{'json.return_value': cls.org_payload})
         elif url == cls.org_payload['repos_url']:
             return MagicMock(**{'json.return_value': cls.repos_payload})
@@ -155,3 +156,19 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def tearDownClass(cls):
         """Stop the patcher"""
         cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """Intergration tests the public_repos method"""
+
+        test_client = GithubOrgClient(self.org)
+        output = test_client.public_repos()
+
+        assert output == self.expected_repos
+
+    def test_public_repos_with_license(self):
+        """Intergration tests the public_repos method with license argument"""
+
+        test_client = GithubOrgClient(self.org)
+        output = test_client.public_repos(license="apache-2.0")
+
+        assert output == self.apache2_repos
