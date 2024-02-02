@@ -71,3 +71,12 @@ Use `@parameterized.expand` as a decorator to parametrize the test with a couple
 - `abc`
 
 Of course, no external HTTP calls should be made.
+
+### Task 5
+File: [test_client.py](test_client.py)
+`memoize` turns methods into properties.
+
+Implement the `test_public_repos_url` method to unit-test `GithubOrgClient._public_repos_url`.
+Use `patch` as a context manager to patch `GithubOrgClient.org` and make it return a known payload.
+
+Test that the result of `_public_repos_url` is the expected one based on the mocked payload.
