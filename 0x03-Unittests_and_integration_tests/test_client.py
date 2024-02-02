@@ -11,6 +11,7 @@ from unittest.mock import patch, PropertyMock, MagicMock
 import client
 from client import GithubOrgClient
 from parameterized import parameterized
+from typing import Dict
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -112,3 +113,12 @@ class TestGithubOrgClient(unittest.TestCase):
 
             mock_prepos_url.assert_called_once()
             mock_get_json.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
+    ])
+    def test_has_license(self, license: Dict[str, Dict], license_key: str,
+                         expected: bool):
+        """Tests the has_license static method"""
+        assert GithubOrgClient.has_license(license, license_key) == expected
