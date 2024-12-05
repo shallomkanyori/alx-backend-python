@@ -49,11 +49,13 @@ def insert_data(connection, data):
 
         with open(data, 'r') as file:
             user_data = csv.DictReader(file)
-            
-            for row in user_data:
-                query = "INSERT INTO user_data (id, name, email, age) VALUES ({}, {}, {}, {})".format(row['id'], row['name'], row['email'], row['age'])
-                cursor.execute(query)
+
+            query_data = [(row['id'], row['name'], row['email'], float(row['age'])) for row in user_data]
+
+            cursor.executemany("INSERT INTO user_data (id, name, email, age) VALUES (%s, %s, %s, %s)", query_data)
         
+        connection.commit()
+
         cursor.close()
     except (MySQLError) as e:
         print(f"Error inserting data: {e}")
