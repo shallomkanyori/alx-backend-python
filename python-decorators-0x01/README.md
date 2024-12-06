@@ -11,3 +11,6 @@ Implement a decorator to manage database transactions (commit/rollback).
 
 ## Task 3: Retry Database Queries
 Build a decorator to retry database operations on failure.
+
+## Task 4: Cache Database Queries
+Implement a decorator to cache query results.
