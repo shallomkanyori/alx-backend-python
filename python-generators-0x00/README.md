@@ -9,3 +9,6 @@ Create the generator.
 
 ## Task 3
 **Objective:** Create a generator to fetch and process data in batches from the users database.
+
+## Task 4
+**Objective:** Simulte fetching paginated data from the users database using a generator to lazily load each page.
