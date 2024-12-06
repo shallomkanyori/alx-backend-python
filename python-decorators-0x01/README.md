@@ -8,3 +8,6 @@ Automate database connection handling with a decorator.
 
 ## Task 2: Transaction Management Decorator
 Implement a decorator to manage database transactions (commit/rollback).
+
+## Task 3: Retry Database Queries
+Build a decorator to retry database operations on failure.
