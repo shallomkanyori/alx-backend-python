@@ -5,3 +5,6 @@
 
 ## Task 1
 **Objective:** Create a reusable context manager that takes a query as input and executes it, managing both connection and the query execution.
+
+## Task 2
+**Objective:** Run multiple database queries concurrently using `asyncio.gather`.
