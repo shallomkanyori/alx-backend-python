@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
-from rest_framework import viewsets
+from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from .serializers import ConversationSerializer, MessageSerializer
 
@@ -29,7 +29,12 @@ class ConversationViewSet(viewsets.ViewSet):
         message = request.data.get('message')
         message = Message.objects.create(conversation=conversation, message=message)
         serializer = MessageSerializer(message)
-        return Response(serializer.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MessageViewSet(viewsets.ViewSet):
     def list(self, request):
