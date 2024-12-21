@@ -17,3 +17,9 @@ Configure URLS for the conversations and messages
 
 ## Task 6
 Run and test the application
+
+
+# Django Rest Framework Authentication and Permissions
+
+## Task 1
+Add user authentication using JWT (JSON Web Tokens) or Session Authentication.
