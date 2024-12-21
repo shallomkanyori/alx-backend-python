@@ -11,3 +11,6 @@ Build serializers for the models
 
 ## Task 4
 Implement API endpoints for conversations and messages
+
+## Task 5
+Configure URLS for the conversations and messages
