@@ -5,7 +5,7 @@ from django.urls import path, include
 router = routers.DefaultRouter()
 router.register(r'conversations', ConversationViewSet, basename='conversations')
 
-conversations_router = routers.NestedSimpleRouter(router, r'conversations', lookup='conversation')
+conversations_router = routers.NestedDefaultRouter(router, r'conversations', lookup='conversation')
 conversations_router.register(r'messages', MessageViewSet, basename='conversation-messages')
 
 urlpatterns = [
