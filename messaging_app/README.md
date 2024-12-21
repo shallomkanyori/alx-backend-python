@@ -14,3 +14,6 @@ Implement API endpoints for conversations and messages
 
 ## Task 5
 Configure URLS for the conversations and messages
+
+## Task 6
+Run and test the application
