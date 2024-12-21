@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models.AbstractBaseUser import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser
 import uuid
 
 class User(AbstractBaseUser):
