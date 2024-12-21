@@ -8,3 +8,6 @@ Design the models for users, messages, and conversations.
 
 ## Task 3
 Build serializers for the models
+
+## Task 4
+Implement API endpoints for conversations and messages
