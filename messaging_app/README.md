@@ -21,5 +21,8 @@ Run and test the application
 
 # Django Rest Framework Authentication and Permissions
 
-## Task 1
+## Task 0
 Add user authentication using JWT (JSON Web Tokens) or Session Authentication.
+
+## Task 1
+Create custom permission classes to control access.

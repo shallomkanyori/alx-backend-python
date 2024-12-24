@@ -27,4 +27,9 @@ class ConversationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Conversation
-        fields = ['conversation_id', 'participants_id', 'created_at', 'messages']
+        fields = ['conversation_id', 'participants_id', 'participants', 'created_at', 'messages']
+    
+    def validate_participants(self, participants):
+        if len(participants) < 1:
+            raise serializers.ValidationError('Conversations must have at least one participants')
+        return participants
