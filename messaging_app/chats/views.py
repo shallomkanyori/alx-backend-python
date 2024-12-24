@@ -18,7 +18,7 @@ class ConversationViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        queryset = Conversation.objects.all()
+        queryset = Conversation.objects.filter(participants__user_id=request.user.user_id)
         conversation = get_object_or_404(queryset, pk=pk)
         serializer = ConversationSerializer(conversation)
         return Response(serializer.data)
