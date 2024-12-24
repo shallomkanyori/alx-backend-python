@@ -1,21 +1,21 @@
 # Messaging App
 
-## Task 1
+## Task 0
 Create a new django project and install django rest framework.
 
-## Task 2
+## Task 1
 Design the models for users, messages, and conversations.
 
-## Task 3
+## Task 2
 Build serializers for the models
 
-## Task 4
+## Task 3
 Implement API endpoints for conversations and messages
 
-## Task 5
+## Task 4
 Configure URLS for the conversations and messages
 
-## Task 6
+## Task 5
 Run and test the application
 
 
@@ -27,5 +27,8 @@ Add user authentication using JWT (JSON Web Tokens) or Session Authentication.
 ## Task 1
 Create custom permission classes to control access.
 
-## Taskk 2
+## Task 2
 Implement pagination and filtering for messages.
+
+## Task 3
+Use postman to test api endpoints.

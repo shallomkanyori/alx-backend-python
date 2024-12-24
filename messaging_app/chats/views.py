@@ -24,6 +24,8 @@ class ConversationViewSet(viewsets.ViewSet):
         return Response(serializer.data)
     
     def create(self, request):
+        data = request.data
+        data['participants_id'] = request.user.user_id
         serializer = ConversationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
