@@ -6,6 +6,8 @@ from .serializers import ConversationSerializer, MessageSerializer
 from .models import Conversation, Message
 from .permissions import IsParticipantOfConversation
 from rest_framework.permissions import IsAuthenticated
+from django_filters import rest_framework as filters
+from .filters import MessageFilter
 
 class ConversationViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated, IsParticipantOfConversation]
@@ -42,6 +44,9 @@ class ConversationViewSet(viewsets.ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MessageViewSet(viewsets.ViewSet):
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = MessageFilter
+
     def list(self, request, conversation_pk=None):
         queryset = Message.objects.filter(conversation_id=conversation_pk)
         serializer = MessageSerializer(queryset, many=True)

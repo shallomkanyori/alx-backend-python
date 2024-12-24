@@ -26,3 +26,6 @@ Add user authentication using JWT (JSON Web Tokens) or Session Authentication.
 
 ## Task 1
 Create custom permission classes to control access.
+
+## Taskk 2
+Implement pagination and filtering for messages.
