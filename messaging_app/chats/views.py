@@ -44,6 +44,7 @@ class ConversationViewSet(viewsets.ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class MessageViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated, IsParticipantOfConversation]
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = MessageFilter
 
