@@ -1,0 +1,5 @@
+2025-01-08 09:08:37.889070 - User: AnonymousUser - Path: /api/
+2025-01-08 09:09:04.692723 - User: AnonymousUser - Path: /api-auth/login/
+2025-01-08 09:09:12.679004 - User: AnonymousUser - Path: /api-auth/login/
+2025-01-08 09:09:13.117293 - User: admin@example.com - Path: /api/
+2025-01-08 09:09:23.953332 - User: admin@example.com - Path: /api/conversations/
