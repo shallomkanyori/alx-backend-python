@@ -36,4 +36,7 @@ Use postman to test api endpoints.
 # Django Middleware
 
 ## Task 0
-Setup project
+Setup project.
+
+## Task 1
+Create a middleware that logs each user’s requests to a file, including the timestamp, user and the request path.
