@@ -1,0 +1,210 @@
+{
+  "info": {
+    "name": "Messaging App API Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login (Obtain JWT Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/token/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "token"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"messaging123\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Conversations",
+      "item": [
+        {
+          "name": "Create a Conversation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTUwNTkzLCJpYXQiOjE3MzUwNjQxOTMsImp0aSI6ImU2M2JhZTc2ZGJlZDRiM2E4N2VmY2MyNTYyYzdhNzI3IiwidXNlcl9pZCI6ImJlYWZmNmM3LTE5MjgtNGNlMy1hNjJiLTFmNTkzMmFhNzI0MCJ9.umci9ZaP5H1lP8QWFfOxSfa8lGsjvUs7N1i3Zwe5j1E",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"participants\": [\"{{user_id_1}}\", \"{{user_id_2}}\"]\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send a Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTUwNTkzLCJpYXQiOjE3MzUwNjQxOTMsImp0aSI6ImU2M2JhZTc2ZGJlZDRiM2E4N2VmY2MyNTYyYzdhNzI3IiwidXNlcl9pZCI6ImJlYWZmNmM3LTE5MjgtNGNlMy1hNjJiLTFmNTkzMmFhNzI0MCJ9.umci9ZaP5H1lP8QWFfOxSfa8lGsjvUs7N1i3Zwe5j1E",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/{{conversation_id}}/messages/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations", "{{conversation_id}}", "messages"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message_body\": \"Hello, this is a test message!\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Conversations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTUwNTkzLCJpYXQiOjE3MzUwNjQxOTMsImp0aSI6ImU2M2JhZTc2ZGJlZDRiM2E4N2VmY2MyNTYyYzdhNzI3IiwidXNlcl9pZCI6ImJlYWZmNmM3LTE5MjgtNGNlMy1hNjJiLTFmNTkzMmFhNzI0MCJ9.umci9ZaP5H1lP8QWFfOxSfa8lGsjvUs7N1i3Zwe5j1E",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Messages of a Conversation",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTUwNTkzLCJpYXQiOjE3MzUwNjQxOTMsImp0aSI6ImU2M2JhZTc2ZGJlZDRiM2E4N2VmY2MyNTYyYzdhNzI3IiwidXNlcl9pZCI6ImJlYWZmNmM3LTE5MjgtNGNlMy1hNjJiLTFmNTkzMmFhNzI0MCJ9.umci9ZaP5H1lP8QWFfOxSfa8lGsjvUs7N1i3Zwe5j1E",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/{{conversation_id}}/messages/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations", "{{conversation_id}}", "messages"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Unauthorized Access",
+      "item": [
+        {
+          "name": "Attempt to Access Conversations Without Authentication",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attempt to Access Messages Without Authentication",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/{{conversation_id}}/messages/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations", "{{conversation_id}}", "messages"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attempt to Access Private Conversation",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTUwNjkxLCJpYXQiOjE3MzUwNjQyOTEsImp0aSI6IjY4MzE3Y2U3Yzg4NzRkNTNhNmQ0YTllNTgyNzRmZmRjIiwidXNlcl9pZCI6ImFhMGE0NzY2LWQzYTctNGU5OC1hNzFhLWRhNDE1ODFmNzdlZCJ9.Wq1kbK_-DOJcRxzQn2Vh8nFxbQnBcYjC39ucWcPpM00",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/{{conversation_id}}/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations", "{{conversation_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Attempt to Access Private Conversation Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MTUwNjkxLCJpYXQiOjE3MzUwNjQyOTEsImp0aSI6IjY4MzE3Y2U3Yzg4NzRkNTNhNmQ0YTllNTgyNzRmZmRjIiwidXNlcl9pZCI6ImFhMGE0NzY2LWQzYTctNGU5OC1hNzFhLWRhNDE1ODFmNzdlZCJ9.Wq1kbK_-DOJcRxzQn2Vh8nFxbQnBcYjC39ucWcPpM00",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conversations/{{conversation_id}}/messages/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conversations", "{{conversation_id}}", "messages"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "conversation_id", "value": "d27374ce-21a9-4911-b3f8-386cf8598d7a" },
+    { "key": "user_id_1", "value": "beaff6c7-1928-4ce3-a62b-1f5932aa7240" },
+    { "key": "user_id_2", "value": "f840b02f-9f62-40e2-8250-bfc61db2f9b4" }
+  ]
+}
