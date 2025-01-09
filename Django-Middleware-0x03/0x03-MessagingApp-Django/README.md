@@ -40,3 +40,6 @@ Setup project.
 
 ## Task 1
 Create a middleware that logs each user’s requests to a file, including the timestamp, user and the request path.
+
+## Task 2
+Implement a middleware that restricts access to the messaging up during certain hours of the day.
