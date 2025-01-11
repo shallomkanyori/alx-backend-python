@@ -43,3 +43,6 @@ Create a middleware that logs each user’s requests to a file, including the ti
 
 ## Task 2
 Implement a middleware that restricts access to the messaging up during certain hours of the day.
+
+## Task 3
+Implement middleware that limits the number of chat messages a user can send within a certain time window, based on their IP address.
