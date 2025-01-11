@@ -46,3 +46,6 @@ Implement a middleware that restricts access to the messaging up during certain 
 
 ## Task 3
 Implement middleware that limits the number of chat messages a user can send within a certain time window, based on their IP address.
+
+## Task 4
+Define a middleware that checks the user’s role i.e admin, before allowing access to specific actions.
