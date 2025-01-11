@@ -1,4 +1,4 @@
-from .view import MessageViewSet, NotificationViewSet, MessageHistoryViewSet
+from .view import MessageViewSet, NotificationViewSet, MessageHistoryViewSet, delete_user
 from rest_framework import routers
 from django.urls import path, include
 
@@ -9,4 +9,5 @@ router.register(r'message-history', MessageHistoryViewSet, basename='message-his
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('delete-user/<int:pk>/', delete_user)
 ]

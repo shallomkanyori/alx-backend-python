@@ -2,9 +2,17 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
-from .serializers import MessageSerializer, MessageHistorySerializer, NotificationSerializer
+from .serializers import MessageSerializer, MessageHistorySerializer, NotificationSerializer, UserSerializer
 from .models import Message, MessageHistory, Notification
 from django.db.models import Q
+from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+
+@api_view(['DELETE'])
+def delete_user(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    user.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 class MessageViewSet(viewsets.ViewSet):
     queryset = Message.objects.filter(Q(sender_id=request.user.user_id) | Q(receiver_id=request.user.user_id))
