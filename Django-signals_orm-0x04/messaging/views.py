@@ -31,8 +31,13 @@ def get_threaded_replies(message):
 class MessageViewSet(viewsets.ViewSet):
     def list(self, request):
         queryset = Message.objects.filter(Q(sender=request.user) | Q(receiver=request.user))
+        unread_messages = Message.unread_messages.filter(receiver=request.user).only('content', 'timestamp')
         serializer = MessageSerializer(queryset, many=True)
-        return Response(serializer.data)
+        unread_serializer = MessageSerializer(unread_messages, many=True)
+        return Response({
+            'messages': serializer.data,
+            'unread_messages': unread_serializer.data
+        })
     
     def retrieve(self, request, pk=None):
         queryset = Message.objects.all()
