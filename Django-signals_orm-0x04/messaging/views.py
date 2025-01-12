@@ -7,7 +7,9 @@ from .models import Message, MessageHistory, Notification
 from django.db.models import Q
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
-django.db.models import Prefetch
+from django.db.models import Prefetch
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 @api_view(['DELETE'])
 def delete_user(request, pk):
@@ -29,6 +31,8 @@ def get_threaded_replies(message):
     return fetch_replies(message)
 
 class MessageViewSet(viewsets.ViewSet):
+
+    @method_decorator(cache_page(60))
     def list(self, request):
         queryset = Message.objects.filter(Q(sender=request.user) | Q(receiver=request.user))
         unread_messages = Message.unread.unread_for_user(request.user).only('content', 'timestamp')

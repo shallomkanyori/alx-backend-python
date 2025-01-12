@@ -14,3 +14,6 @@ Implement threaded conversations where users can reply to specific messages, and
 
 ## Task 4
 Create a custom manager to filter unread messages for a user.
+
+## Task 5
+Set up basic caching for a view that retrieves messages in the messaging app.
