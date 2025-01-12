@@ -7,6 +7,7 @@ from .models import Message, MessageHistory, Notification
 from django.db.models import Q
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
+django.db.models import Prefetch
 
 @api_view(['DELETE'])
 def delete_user(request, pk):
@@ -14,22 +15,39 @@ def delete_user(request, pk):
     user.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-class MessageViewSet(viewsets.ViewSet):
-    queryset = Message.objects.filter(Q(sender_id=request.user.user_id) | Q(receiver_id=request.user.user_id))
+def get_threaded_replies(message):
+    """Recursively fetch replies to a message."""
+    def fetch_replies(message):
+        replies = message.replies.all().select_related('sender', 'receiver')
+        return [
+            {
+                'message': reply,
+                'replies': fetch_replies(reply)
+            }
+            for reply in replies
+        ]
+    return fetch_replies(message)
 
+class MessageViewSet(viewsets.ViewSet):
     def list(self, request):
-        serializer = MessageSerializer(self.queryset, many=True)
+        queryset =Message.objects.select_related('sender', 'receiver', 'parent_message').prefetch_related(
+            Prefetch('replies', queryset=Message.objects.select_related('sender', 'receiver'))
+            )
+        serializer = MessageSerializer(queryset, many=True)
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
-        message = get_object_or_404(self.queryset, pk=pk)
-        history = MessageHistory.objects.filter(message=message)
-
+        queryset = Message.objects.all()
+        root_message = get_object_or_404(queryset, pk=pk)
         serializer = MessageSerializer(message)
-        history_serializer = MessageHistorySerializer(history, many=True)
-
+    
         response_data = serializer.data
-        response_data['history'] = history_serializer.data
+        response_data['replies'] = get_threaded_replies(root_message)
+        
+        if message.sender == request.user:
+            history = MessageHistory.objects.filter(message=message)
+            history_serializer = MessageHistorySerializer(history, many=True)
+            response_data['history'] = history_serializer.data
 
         return Response(response_data)
 

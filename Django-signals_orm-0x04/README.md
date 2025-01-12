@@ -8,3 +8,6 @@ Log when a user edits a message and save the old content before the edit.
 
 ## Task 2
 Automatically clean up related data when a user deletes their account.
+
+## Task 3
+Implement threaded conversations where users can reply to specific messages, and retrieve conversations efficiently.
