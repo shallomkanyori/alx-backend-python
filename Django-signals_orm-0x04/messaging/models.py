@@ -1,9 +1,6 @@
 from django.db import models
 import uuid
-
-class UnreadMessagesManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(read=False)
+from .managers import UnreadMessagesManager
 
 class Message(models.Model):
     message_id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
@@ -14,7 +11,7 @@ class Message(models.Model):
     parent_message = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
     edited = models.BooleanField(default=False)
     read = models.BooleanField(default=False)
-    unread_messages = UnreadMessagesManager()
+    unread = UnreadMessagesManager()
 
     def __str__(self):
         return self.content
