@@ -30,14 +30,15 @@ def get_threaded_replies(message):
 
 class MessageViewSet(viewsets.ViewSet):
     def list(self, request):
-        queryset =Message.objects.select_related('sender', 'receiver', 'parent_message').prefetch_related(
-            Prefetch('replies', queryset=Message.objects.select_related('sender', 'receiver'))
-            )
+        queryset = Message.objects.filter(Q(sender=request.user) | Q(receiver=request.user))
         serializer = MessageSerializer(queryset, many=True)
         return Response(serializer.data)
     
     def retrieve(self, request, pk=None):
         queryset = Message.objects.all()
+        messages = Message.objects.select_related('sender', 'receiver', 'parent_message').prefetch_related(
+            Prefetch('replies', queryset=Message.objects.select_related('sender', 'receiver'))
+        )
         root_message = get_object_or_404(queryset, pk=pk)
         serializer = MessageSerializer(message)
     
