@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    command: python manage.py runserver
+    command: python3 manage.py runserver
   db:
     image: mysql:5.7
     environment:
