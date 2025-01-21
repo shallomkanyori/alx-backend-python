@@ -40,3 +40,6 @@ Containerize the django messaging app.
 
 ## Task 1
 Manage multiple services using Docker Compose.
+
+## Task 2
+Use Docker volumes to persist data from the MySQL datbase.
