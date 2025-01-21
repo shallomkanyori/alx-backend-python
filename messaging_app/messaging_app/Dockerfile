@@ -2,13 +2,11 @@
 
 FROM python:3.10
 
-WORKDIR /messaging_app
-
-COPY requirements.txt /messaging_app/requirements.txt
+COPY ./messaging_app/requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-COPY . /messaging_app
+COPY . .
 
 EXPOSE 8000
 
