@@ -4,9 +4,9 @@ FROM python:3.10
 
 WORKDIR /messaging_app
 
-COPY Requirements.txt /messaging_app/requirements.txt
+COPY requirements.txt /messaging_app/requirements.txt
 
-RUN pip install -r Requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . /messaging_app
 
