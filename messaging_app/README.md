@@ -32,3 +32,8 @@ Implement pagination and filtering for messages.
 
 ## Task 3
 Use postman to test api endpoints.
+
+# Containerization with docker
+
+## Task 0
+Containerize the django messaging app.
