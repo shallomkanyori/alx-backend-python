@@ -37,3 +37,6 @@ Use postman to test api endpoints.
 
 ## Task 0
 Containerize the django messaging app.
+
+## Task 1
+Manage multiple services using Docker Compose.
