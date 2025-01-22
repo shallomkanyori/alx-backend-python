@@ -1,0 +1,8 @@
+#!/bin/sh
+# Sets up Kubernetes locally
+
+minikube start
+
+kubectl cluster-info
+
+kubectl get pods

@@ -43,3 +43,8 @@ Manage multiple services using Docker Compose.
 
 ## Task 2
 Use Docker volumes to persist data from the MySQL datbase.
+
+# Basics of container orchestration with Kubernetes
+
+## Task 0
+Set up and use Kubernetes locally.
