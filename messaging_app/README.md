@@ -48,3 +48,6 @@ Use Docker volumes to persist data from the MySQL datbase.
 
 ## Task 0
 Set up and use Kubernetes locally.
+
+## Task 1
+Deploy the containerized Django app on Kubernetes.

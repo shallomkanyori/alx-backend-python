@@ -2,6 +2,8 @@ services:
   web:
     build: .
     command: python3 manage.py runserver
+    image: messaging-app:latest
+    
   db:
     image: mysql:5.7
     environment:
