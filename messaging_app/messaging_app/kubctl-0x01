@@ -1,0 +1,12 @@
+#!/bin/bash
+
+kubectl scale deployment messagin-app --replicas=3
+
+# Verify that the pods are running
+kubectl get pods
+
+# Load test the application
+wrk -t12 -c400 -d30s http://localhost:8000
+
+# Monitor resource usage
+kubectl top

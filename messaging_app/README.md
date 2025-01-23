@@ -51,3 +51,6 @@ Set up and use Kubernetes locally.
 
 ## Task 1
 Deploy the containerized Django app on Kubernetes.
+
+## Task 2
+Scale applications in Kubernetes.
