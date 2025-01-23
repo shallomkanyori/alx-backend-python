@@ -1,0 +1,10 @@
+#!/bin/sh
+# Implements blue-green deployment for the messaging app
+
+kubectl apply -f blue_deployment.yaml
+
+kubectl apply -f green_deployment.yaml
+
+kubectl apply -f kubeservice.yaml
+
+kubectl logs
