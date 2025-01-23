@@ -60,3 +60,6 @@ Expose the Django app to the internet using an Ingress controller.
 
 ## Task 4
 Perform zero-downtime deployments by implementing a blue-green deployment strategy.
+
+## Task 5
+Update the application without downtime.
