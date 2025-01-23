@@ -54,3 +54,6 @@ Deploy the containerized Django app on Kubernetes.
 
 ## Task 2
 Scale applications in Kubernetes.
+
+## Task 3
+Expose the Django app to the internet using an Ingress controller.
