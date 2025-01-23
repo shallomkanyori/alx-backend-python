@@ -1,0 +1,36 @@
+#!/bin/bash
+# Implements a rolling update for the messaging app
+
+LOG_FILE=rolling_update.log
+DEPLOYMENT_NAME=messaging-app-blue
+
+kubectl apply -f blue_deployment.yaml
+
+kubectl rollout status deployment/"$DEPLOYMENT_NAME" messaging-app $
+ROLLOUT_STATUS_PID=$!
+
+function test_app_availability {
+  while true; do
+    response=$(curl -s -o /dev/null -w "%{http_code}" --max-time 2 http://127.0.0.1:8000)
+    if [ $response -eq 200 ]; then
+      echo "$(date) - Application is available (HTTP 200)" >> $LOG_FILE
+    else
+        echo "$(date) - Application is unavailable (HTTP $response)" >> $LOG_FILE
+    fi
+    sleep 5
+  done
+}
+
+test_app_availability &
+
+wait $ROLLOUT_STATUS_PID
+
+# Verify upadated deployment
+kubectl get pods -l "app=$DEPLOYMENT_NAME" -o wide
+
+# Check for downtime
+if grep -q "unavailable" $LOG_FILE; then
+  echo "Down time detected during rolling update. Check $LOG_FILE for more details"
+else
+  echo "No down time detected during rolling update"
+fi
