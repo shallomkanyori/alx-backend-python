@@ -68,3 +68,6 @@ Update the application without downtime.
 
 ## Task 0
 Install Jenkins in a docker container and set up a pipeline that pulls the source code from GitHub, runs tests using pytest, generates a test report, and triggers the pipeline manually.
+
+## Task 1
+Build a Docker image for the Django messaging app using Jenkins.
