@@ -74,3 +74,6 @@ Build a Docker image for the Django messaging app using Jenkins.
 
 ## Task 2
 Set up github actions for testing.
+
+## Task 3
+Run code quality checks in GitHub Actions.
