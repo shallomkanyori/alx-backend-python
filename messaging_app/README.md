@@ -71,3 +71,6 @@ Install Jenkins in a docker container and set up a pipeline that pulls the sourc
 
 ## Task 1
 Build a Docker image for the Django messaging app using Jenkins.
+
+## Task 2
+Set up github actions for testing.
