@@ -63,3 +63,8 @@ Perform zero-downtime deployments by implementing a blue-green deployment strate
 
 ## Task 5
 Update the application without downtime.
+
+# Jenkins and Github Actions
+
+## Task 0
+Install Jenkins in a docker container and set up a pipeline that pulls the source code from GitHub, runs tests using pytest, generates a test report, and triggers the pipeline manually.
