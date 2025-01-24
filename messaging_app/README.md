@@ -77,3 +77,6 @@ Set up github actions for testing.
 
 ## Task 3
 Run code quality checks in GitHub Actions.
+
+## Task 4
+Build and push Docker image using GitHub Actions.
